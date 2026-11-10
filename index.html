@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>PokéDash · Stock & rentabilité</title>
+  <meta name="theme-color" content="#0d0f14" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Écran de connexion (mode Supabase) -->
+  <section id="auth" class="auth" hidden>
+    <div class="auth-card glass">
+      <div class="brand big"><span class="logo">◓</span> PokéDash</div>
+      <p class="muted">Ton stock, tes lots, ton grading et ta marge, sur tous tes appareils.</p>
+      <form id="auth-form">
+        <label>E-mail<input type="email" name="email" required autocomplete="email" /></label>
+        <label>Mot de passe<input type="password" name="password" required minlength="6" autocomplete="current-password" /></label>
+        <div class="row">
+          <button class="btn primary" type="submit" data-mode="login">Se connecter</button>
+          <button class="btn ghost" type="submit" data-mode="signup">Créer un compte</button>
+        </div>
+        <p id="auth-msg" class="muted small"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Application -->
+  <div id="app" class="app" hidden>
+    <aside class="sidebar glass">
+      <div class="brand"><span class="logo">◓</span> PokéDash</div>
+      <nav id="nav">
+        <a href="#dashboard" data-page="dashboard"><span class="ico">▦</span><span>Tableau de bord</span></a>
+        <a href="#stock" data-page="stock"><span class="ico">▤</span><span>Stock</span></a>
+        <a href="#lots" data-page="lots"><span class="ico">◫</span><span>Lots</span></a>
+        <a href="#grading" data-page="grading"><span class="ico">◈</span><span>Grading</span></a>
+        <a href="#simulateur" data-page="simulateur"><span class="ico">⚖</span><span>Simulateur</span></a>
+        <a href="#reglages" data-page="reglages"><span class="ico">⚙</span><span>Réglages</span></a>
+      </nav>
+      <div class="sidebar-foot">
+        <div id="mode-badge" class="badge"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1 id="page-title">Tableau de bord</h1>
+        <div class="top-actions">
+          <button class="btn ghost" id="btn-add-lot">+ Lot</button>
+          <button class="btn primary" id="btn-add-card">+ Carte</button>
+        </div>
+      </header>
+      <div id="banner"></div>
+      <div id="view"></div>
+    </main>
+  </div>
+
+  <!-- Modale générique -->
+  <dialog id="modal" class="modal glass">
+    <form method="dialog" id="modal-form">
+      <header class="modal-head">
+        <h2 id="modal-title"></h2>
+        <button class="icon-btn" value="cancel" formnovalidate aria-label="Fermer">✕</button>
+      </header>
+      <div id="modal-body"></div>
+      <footer class="modal-foot" id="modal-foot"></footer>
+    </form>
+  </dialog>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+  <div id="toast" class="toast" hidden></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
