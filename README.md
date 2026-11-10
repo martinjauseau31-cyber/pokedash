@@ -10,12 +10,12 @@ Dashboard gratuit pour suivre ton business de cartes Pokémon : stock, lots, gra
 
 | Page | Contenu |
 | --- | --- |
-| Tableau de bord | 8 KPI (résultat latent, ROI, valeur du stock, ventes, dépenses, rotation, part du stock au grading, taux de 9-10), courbe d'évolution, résultat par lot, résultat par mois, liste « À faire » |
-| Stock | Toutes tes cartes avec recherche, filtres (statut, lot) et tri. Clique sur une ligne pour modifier ou supprimer. |
+| Tableau de bord | Chiffres de l'achat-revente uniquement : bénéfice si tout est vendu, trésorerie, valeur du stock (cartes brutes, au grading, gradées, scellé), ventes, dépenses, rotation, taux de 10. Courbe d'évolution, résultat par mois et par lot, liste « À faire » |
+| Stock revente | 4 onglets : **Cartes brutes**, **Scellé** (avec quantité et plus-value), **Gradées** (note, certificat, gain du grading), **Vendus** (marge) |
+| Grading | **En cours** (retour prévu), **Candidates**, **Mes gradeurs** (délai réel, taux de 10, gain moyen par gradeur), **Simulateur** PCA / CCC / PSA côte à côte |
 | Lots | Chaque achat de lot avec son résultat et son ROI calculés automatiquement |
-| Grading | Cartes chez le gradeur, cartes candidates (cote ≥ seuil), notes reçues |
-| Simulateur | Grader ou vendre brut : espérance de gain, pire cas, règle du 2,5× |
-| Réglages | Seuils de la stratégie, thème clair ou sombre, export JSON/CSV, import |
+| Ma collection | Tes cartes, scellés et gradées perso, avec leur valeur et leur évolution. **Jamais comptés** dans les chiffres d'achat-revente |
+| Réglages | Seuils de la stratégie, tarifs et délais des gradeurs (PCA, CCC, PSA, CGC), thème, export JSON/CSV, import |
 
 La fiche de chaque carte affiche une recommandation tirée de la grille de tri. La liste « À faire » te signale les cartes en vente depuis plus de 21 jours (baisse de 10 %) et les cartes à inspecter pour le grading.
 
@@ -65,13 +65,16 @@ Ouvre le site dans Safari (iPhone) ou Chrome (Android), puis *Partager → Sur l
 
 ## Comment l'utiliser au quotidien
 
-1. **Tu achètes un lot** : *+ Lot* (nom, source, prix, date).
-2. **Tu tries le lot** : *+ Carte* pour chaque carte qui vaut plus de 2-3 €, en la rattachant au lot. Les petites cartes peuvent être groupées en une ligne « Lot 50 communes ».
-3. **Tu mets en vente** : statut *En vente*. La date se remplit automatiquement et sert à l'alerte des 21 jours.
-4. **Tu envoies en grading** : statut *Au grading*, avec la société et les frais.
-5. **Tu vends** : tu remplis le prix de vente. Le statut passe en *Vendue* et, sur Cardmarket, les frais de 5 % sont préremplis.
+- **Tu achètes un lot** : « + Lot » (nom, source, prix, date).
+- **Tu ajoutes un article** : « + Ajouter », puis choisis Carte à revendre, Produit scellé, Carte gradée, ou un article de **ma collection**. Une carte qui vient d'un lot se rattache au lot (son coût est déjà compté dans le prix du lot).
+- **Scellé** : une seule ligne avec la quantité (ex. 3 × ETB). Quand tu en vends une partie, choisis « Vendue » et indique la quantité vendue : le reste reste en stock.
+- **Tu envoies au grading** : statut « Au grading », choisis le gradeur et la formule. Les frais (CCC selon la valeur déclarée) et la date de retour prévue se calculent tout seuls.
+- **La carte revient** : statut « Gradée (en main) », note et n° de certificat. Le gain du grading est calculé (cote gradée − cote brute à l'envoi − frais).
+- **Tu vends** : remplis le prix de vente. Sur Cardmarket, les 5 % de frais sont préremplis.
 
-La valeur du stock est enregistrée chaque jour où tu ouvres le dashboard, ce qui construit la courbe d'évolution.
+La valeur du stock et celle de ta collection sont enregistrées chaque jour où tu ouvres le dashboard, ce qui construit les courbes d'évolution.
+
+**Mise à jour v2** : si ta base Supabase a été créée avant la v2, relance tout `schema.sql` dans SQL Editor (sans danger, ça ajoute seulement les nouvelles colonnes).
 
 ## Modifier avec Claude Code
 

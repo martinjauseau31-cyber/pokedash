@@ -38,6 +38,14 @@ create table if not exists public.cards (
   sale_date date,
   listed_date date,
   notes text,
+  portfolio text not null default 'business',  -- 'business' (achat-revente) ou 'perso' (ma collection)
+  kind text not null default 'card',           -- 'card' ou 'sealed' (produit scellé)
+  sealed_type text,                            -- Display, ETB, Coffret, Booster…
+  quantity integer not null default 1,
+  grading_service text,                        -- formule : Classic, Fast, Standard, Express…
+  declared_value numeric(10,2),
+  raw_value numeric(10,2),                     -- cote brute au moment de l'envoi au grading
+  cert_number text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -49,6 +57,7 @@ create table if not exists public.snapshots (
   stock_value numeric(12,2) not null default 0,
   invested numeric(12,2) not null default 0,
   sales numeric(12,2) not null default 0,
+  perso_value numeric(12,2) not null default 0,
   unique (user_id, date)
 );
 
@@ -76,3 +85,19 @@ end $$;
 create index if not exists cards_user_idx on public.cards(user_id);
 create index if not exists cards_lot_idx  on public.cards(lot_id);
 create index if not exists lots_user_idx  on public.lots(user_id);
+
+-- ─────────────────────────────────────────────────────────────
+--  Mise à jour v2 (si ta base a été créée avec l'ancienne version)
+--  Sans danger : ne fait rien si les colonnes existent déjà.
+-- ─────────────────────────────────────────────────────────────
+alter table public.cards add column if not exists portfolio text not null default 'business';
+alter table public.cards add column if not exists kind text not null default 'card';
+alter table public.cards add column if not exists sealed_type text;
+alter table public.cards add column if not exists quantity integer not null default 1;
+alter table public.cards add column if not exists grading_service text;
+alter table public.cards add column if not exists declared_value numeric(10,2);
+alter table public.cards add column if not exists raw_value numeric(10,2);
+alter table public.cards add column if not exists cert_number text;
+alter table public.snapshots add column if not exists perso_value numeric(12,2) not null default 0;
+update public.cards set portfolio = 'perso', status = 'stock' where status = 'perso';
+create index if not exists cards_portfolio_idx on public.cards(user_id, portfolio);

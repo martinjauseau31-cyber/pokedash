@@ -11,9 +11,10 @@ export const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiO
 
 // Paramètres par défaut de la stratégie (modifiables dans Réglages)
 export const DEFAULTS = {
-  seuilGradingBrut: 20,      // € : en dessous, pas de grading
-  multiplicateur10: 2.5,     // prix du 10 / prix brut minimum
-  seuilPSA: 200,             // € : au-dessus, PSA plutôt que PCA
-  joursAvantBaisse: 21,      // jours avant -10 % sur une carte en vente
-  capitalDepart: 600,        // € : budget de départ
+  seuilGradingBrut: 50, // € : en dessous, pas de grading (vente brute)
+  multiplicateur10: 2.5, // prix du 10 / prix brut minimum
+  seuilCCC: 60, // € : au-dessus, CCC proposé si tu veux récupérer ton argent vite
+  seuilPSA: 200, // € : au-dessus, PSA plutôt que PCA
+  joursAvantBaisse: 21, // jours avant -10 % sur un article en vente
+  capitalDepart: 600, // € : budget de départ
 };
