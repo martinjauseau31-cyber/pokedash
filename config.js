@@ -6,8 +6,8 @@
 //  La clé "anon" est publique par design : la sécurité est assurée
 //  par les règles RLS du fichier schema.sql.
 // ─────────────────────────────────────────────────────────────
-export const SUPABASE_URL = "";
-export const SUPABASE_ANON_KEY = "";
+export const SUPABASE_URL = "https://zxyifgpwbpndtylmanxv.supabase.co";
+export const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4eWlmZ3B3YnBuZHR5bG1hbnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMTg0NTcsImV4cCI6MjEwOTg5NDQ1N30.dQKVXtXsMomXA9B-VpBr4zD8WdJDCbEz56sVBmHnh4s";
 
 // Paramètres par défaut de la stratégie (modifiables dans Réglages)
 export const DEFAULTS = {
